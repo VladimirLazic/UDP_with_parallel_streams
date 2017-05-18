@@ -1,0 +1,4 @@
+﻿  reciver.c
+reciver.c(10): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory
+  sender.c
+sender.c(10): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory

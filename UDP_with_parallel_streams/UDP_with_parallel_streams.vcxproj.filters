@@ -18,5 +18,8 @@
     <ClCompile Include="sender.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="reciver.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

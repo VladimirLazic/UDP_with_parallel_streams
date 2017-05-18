@@ -1,0 +1,5 @@
+﻿  sender.c
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(10): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory
+  reciver.c
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\reciver.c(10): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory
+  Generating Code...
