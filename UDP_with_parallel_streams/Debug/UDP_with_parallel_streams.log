@@ -1,0 +1,9 @@
+﻿  sender.c
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(15): warning C4005: '_CRT_SECURE_NO_WARNINGS': macro redefinition
+  c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(15): note: command-line arguments:  see previous definition of '_CRT_SECURE_NO_WARNINGS'
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(32): warning C4091: 'typedef ': ignored on left of 'Datagram' when no variable is declared
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(79): warning C4101: 'fcode': unreferenced local variable
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(76): warning C4101: 'netmask': unreferenced local variable
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(130): warning C4047: 'return': 'void *' differs in levels of indirection from 'int'
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(134): warning C4715: 'device_thread_function': not all control paths return a value
+  UDP_with_parallel_streams.vcxproj -> C:\Users\ironm\Documents\University Docs\Osnovi Racunarskih Mreza 2\Projekat\UDP_with_parallel_streams\Debug\UDP_with_parallel_streams.exe
