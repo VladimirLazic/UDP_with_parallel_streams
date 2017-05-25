@@ -1,0 +1,2 @@
+﻿  reciver.c
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\include\pcap\pcap.h(41): fatal error C1083: Cannot open include file: 'pcap-stdinc.h': No such file or directory
