@@ -1,9 +1,14 @@
 ﻿  sender.c
-c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(15): warning C4005: '_CRT_SECURE_NO_WARNINGS': macro redefinition
-  c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(15): note: command-line arguments:  see previous definition of '_CRT_SECURE_NO_WARNINGS'
-c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(35): warning C4091: 'typedef ': ignored on left of 'Datagram' when no variable is declared
-c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(101): warning C4101: 'fcode': unreferenced local variable
-c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(98): warning C4101: 'netmask': unreferenced local variable
-c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(163): warning C4033: 'device_thread_function' must return a value
-c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(192): warning C4716: 'device_thread_function': must return a value
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(16): warning C4005: '_CRT_SECURE_NO_WARNINGS': macro redefinition
+  c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(16): note: command-line arguments:  see previous definition of '_CRT_SECURE_NO_WARNINGS'
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(36): warning C4091: 'typedef ': ignored on left of 'Datagram' when no variable is declared
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(91): warning C4101: 'fcode': unreferenced local variable
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(88): warning C4101: 'netmask': unreferenced local variable
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(93): warning C4101: 'device_number': unreferenced local variable
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(86): warning C4101: 'selected_devices': unreferenced local variable
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(153): warning C4033: 'device_thread_function' must return a value
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(215): warning C4020: 'calculate_udp_checksum': too many actual parameters
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(222): warning C4244: '=': conversion from 'u_long' to 'unsigned short', possible loss of data
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(251): warning C4029: declared formal parameter list different from definition
+c:\users\ironm\documents\university docs\osnovi racunarskih mreza 2\projekat\udp_with_parallel_streams\udp_with_parallel_streams\sender.c(174): warning C4716: 'device_thread_function': must return a value
   UDP_with_parallel_streams.vcxproj -> C:\Users\ironm\Documents\University Docs\Osnovi Racunarskih Mreza 2\Projekat\UDP_with_parallel_streams\Debug\UDP_with_parallel_streams.exe
