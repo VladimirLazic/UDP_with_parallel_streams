@@ -11,8 +11,8 @@ typedef struct ethernet_header{
 typedef struct ip_header{
 	unsigned char header_length :4;	// Internet header length (4 bits)
 	unsigned char version :4;		// Version (4 bits)
-	unsigned char tos;				// Type of service 
-	unsigned short length;			// Total length 
+	unsigned char tos;				// Type of service
+	unsigned short length;			// Total length
 	unsigned short identification;	// Identification
 	unsigned short fragm_flags :3;  // Flags (3 bits) & Fragment offset (13 bits)
     unsigned short fragm_offset :13;// Flags (3 bits) & Fragment offset (13 bits)
@@ -27,9 +27,9 @@ typedef struct ip_header{
 
 //UDP header
 typedef struct udp_header{
-	unsigned short src_port;		// Source port
-	unsigned short dest_port;		// Destination port
 	unsigned short datagram_length;	// Length of datagram including UDP header and data
+	unsigned short src_port;		// Source port
+	unsigned short dest_port;		// Destination port	
 	unsigned short checksum;		// Header checksum
 }udp_header;
 
@@ -39,7 +39,7 @@ typedef struct tcp_header {
 	unsigned short dest_port;			// Destination port
 	unsigned int sequence_num;			// Sequence Number
 	unsigned int ack_num;				// Acknowledgement number
-	unsigned char reserved :4;			// Reserved for future use (4 bits) 
+	unsigned char reserved :4;			// Reserved for future use (4 bits)
 	unsigned char header_length :4;		// Header length (4 bits)
 	unsigned char flags;				// Packet flags
 	unsigned short windows_size;		// Window size

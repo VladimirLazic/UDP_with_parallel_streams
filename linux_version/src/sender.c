@@ -199,8 +199,8 @@ void create_packet_header(unsigned char *datagram , struct Datagram data) {
 	memset(eth_hdr, 0, sizeof(ethernet_header));
 
 	//Creating a udp header
-	udp_hdr->src_port = htons(8080);
-	udp_hdr->dest_port = htons(8080);
+	udp_hdr->src_port = htons(8888);
+	udp_hdr->dest_port = htons(8888);
 	udp_hdr->datagram_length = htons(sizeof(udp_header) + sizeof(struct Datagram));
 
 	//Creating a ip header
@@ -323,7 +323,7 @@ unsigned short calculate_udp_checksum(udp_header *udp, ip_header *ip , struct Da
 	pseudo_header = NULL;
 	free(pseudo_header);
 
-	return htons(CheckSum);
+	return CheckSum;
 }
 
 unsigned short BytesTo16(unsigned char X, unsigned char Y) {
