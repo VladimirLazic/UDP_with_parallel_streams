@@ -24,6 +24,7 @@
 #define DEFAULT_MESSAGE_LEN 512
 #define BUF_LEN 512
 #define NUM_OF_THREADS 5
+#define ALIGN 520
 
 int NumberOfPackets = 0;
 
@@ -162,7 +163,7 @@ void *device_thread_function(void *device) {
 			memcpy((packet + sizeof(ethernet_header) + sizeof(ip_header) + sizeof(udp_header)), &datagrams[i], sizeof(struct Datagram));
 
 			//Send a usp datagram
-			if (pcap_sendpacket(device_handle, packet, 12 + sizeof(struct Datagram)) != 0) {
+			if (pcap_sendpacket(device_handle, packet, sizeof(ethernet_header) + sizeof(ip_header) + sizeof(udp_header) + sizeof(struct Datagram)) != 0) {
 				printf("Error sending packet id: %d\n", datagrams[i].datagram_id);
 			} else {
 				printf("Success sending packet id: %d by thread: %s\n", datagrams[i].datagram_id , thread_device->name);
@@ -181,20 +182,6 @@ void create_packet_header(unsigned char *datagram , struct Datagram data) {
 	unsigned char eth_addr_src[6];
 	unsigned char ip_helper[sizeof(ip_header) - sizeof(unsigned short)];
 
-
-	// 192.168.1.3 64-5A-04-CD-98-76
-	ipv4_addr_dst[0] = (char)192;
-	ipv4_addr_dst[1] = (char)168;
-	ipv4_addr_dst[2] = (char)1;
-	ipv4_addr_dst[3] = (char)3;
-
-	eth_addr_src[0] = (char)"64";
-	eth_addr_src[1] = (char)"5A";
-	eth_addr_src[2] = (char)"04";
-	eth_addr_src[3] = (char)"CD";
-	eth_addr_src[4] = (char)"98";
-	eth_addr_src[5] = (char)"76";
-
 	//Initializing
 	memset(udp_hdr, 0, sizeof(udp_header));
 	memset(ip_hdr, 0, sizeof(ip_header));
@@ -203,12 +190,25 @@ void create_packet_header(unsigned char *datagram , struct Datagram data) {
 	//Creating a udp header
 	udp_hdr->src_port = htons(8080);
 	udp_hdr->dest_port = htons(8080);
-	udp_hdr->datagram_length = sizeof(struct Datagram) + sizeof(udp_header);
+	udp_hdr->datagram_length = htons(sizeof(udp_header) + sizeof(data));
 
 	//Creating a ip header
 	ip_hdr->next_protocol = 17;		//0x11 UDP protocol
-	memcpy(&(ip_hdr->dst_addr), ipv4_addr_dst, 4 * sizeof(char));
-	memcpy(&(ip_hdr->src_addr), ipv4_addr_dst, 4 * sizeof(char));
+	ip_hdr->dst_addr[0] = 192;
+	ip_hdr->dst_addr[1] = 168;
+	ip_hdr->dst_addr[2] = 1;
+	ip_hdr->dst_addr[3] = 3;
+
+	ip_hdr->src_addr[0] = 192;
+	ip_hdr->src_addr[1] = 168;
+	ip_hdr->src_addr[2] = 1;
+	ip_hdr->src_addr[3] = 3;
+
+	ip_hdr->version = 4;
+	ip_hdr->ttl = 128;
+	ip_hdr->header_length = 20 / 4;
+	ip_hdr->length = htons(sizeof(ip_header) + sizeof(udp_header) + sizeof(struct Datagram));
+
 	memcpy(ip_helper, ip_hdr, 22);
 
 	//Creating ip and udp headers
@@ -217,9 +217,21 @@ void create_packet_header(unsigned char *datagram , struct Datagram data) {
 	
 
 	//Creating a ethernet header
-	memcpy(&(eth_hdr->dest_address), eth_addr_src, 6 * sizeof(unsigned char));	
-	memcpy(&(eth_hdr->src_address), eth_addr_src, 6 * sizeof(unsigned char));
-	eth_hdr->type = htonl(0x0800);
+	eth_hdr->dest_address[0] = 0x90;
+	eth_hdr->dest_address[1] = 0xe6;
+	eth_hdr->dest_address[2] = 0xba;
+	eth_hdr->dest_address[3] = 0xaa;
+	eth_hdr->dest_address[4] = 0xfa;
+	eth_hdr->dest_address[5] = 0xdb;
+
+
+	eth_hdr->src_address[0] = 0x14;
+	eth_hdr->src_address[1] = 0x2d;
+	eth_hdr->src_address[2] = 0x27;
+	eth_hdr->src_address[3] = 0xf3;
+	eth_hdr->src_address[4] = 0x94;
+	eth_hdr->src_address[5] = 0x0b;
+	eth_hdr->type = htons(0x800);
 
 
 	memcpy(datagram, eth_hdr, sizeof(ethernet_header));
@@ -300,7 +312,7 @@ unsigned short calculate_udp_checksum(udp_header *udp, ip_header *ip , struct Da
 	pseudo_header = NULL;
 	free(pseudo_header);
 
-	return CheckSum;
+	return htons(CheckSum);
 }
 
 unsigned short BytesTo16(unsigned char X, unsigned char Y) {

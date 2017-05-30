@@ -1,14 +1,14 @@
 /* PROTOCOL HEADERS */
 
 // Ethernet header
-typedef struct ethernet_header{
+typedef struct  ethernet_header {
 	unsigned char dest_address[6];		// Destination address
 	unsigned char src_address[6];		// Source address
 	unsigned short type;				// Type of the next layer
 }ethernet_header;
 
 // IPv4 header
-typedef struct ip_header{
+typedef struct  ip_header {
 	unsigned char header_length :4;	// Internet header length (4 bits)
 	unsigned char version :4;		// Version (4 bits)
 	unsigned char tos;				// Type of service 
@@ -26,12 +26,12 @@ typedef struct ip_header{
 }ip_header;
 
 //UDP header
-typedef struct udp_header{
+typedef struct udp_header {
 	unsigned short src_port;		// Source port
 	unsigned short dest_port;		// Destination port
 	unsigned short datagram_length;	// Length of datagram including UDP header and data
 	unsigned short checksum;		// Header checksum
-}udp_header;
+} udp_header;
 
 // TCP header
 typedef struct tcp_header {
