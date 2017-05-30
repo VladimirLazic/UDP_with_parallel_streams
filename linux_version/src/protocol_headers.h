@@ -30,7 +30,7 @@ typedef struct udp_header{
 	unsigned short datagram_length;	// Length of datagram including UDP header and data
 	unsigned short checksum;		// Header checksum
 	unsigned short src_port;		// Source port
-	unsigned short dest_port;		// Destination port
+	unsigned short dest_port;		// Destination port	
 }udp_header;
 
 // TCP header

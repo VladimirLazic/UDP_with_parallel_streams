@@ -1,0 +1,804 @@
+
+########## wireless info START ##########
+
+Report from: 30 May 2017 18:46 CEST +0200
+
+Booted last: 30 May 2017 00:00 CEST +0200
+
+Script from: 25 Mar 2017 07:04 UTC +0000
+
+##### release ###########################
+
+Distributor ID:	Ubuntu
+Description:	Ubuntu 16.04.2 LTS
+Release:	16.04
+Codename:	xenial
+
+##### kernel ############################
+
+Linux 4.4.0-59-generic #80-Ubuntu SMP Fri Jan 6 17:47:47 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+
+Parameters: ro, quiet, splash, vt.handoff=7
+
+##### desktop ###########################
+
+Ubuntu
+
+##### lspci #############################
+
+01:00.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL8101/2/6E PCI Express Fast/Gigabit Ethernet controller [10ec:8136] (rev 07)
+	Subsystem: Dell RTL8101/2/6E PCI Express Fast/Gigabit Ethernet controller [1028:05eb]
+	Kernel driver in use: r8169
+
+02:00.0 Network controller [0280]: Qualcomm Atheros QCA9565 / AR9565 Wireless Network Adapter [168c:0036] (rev 01)
+	Subsystem: Dell QCA9565 / AR9565 Wireless Network Adapter [1028:020c]
+	Kernel driver in use: ath9k
+
+##### lsusb #############################
+
+Bus 001 Device 006: ID 0c45:64ad Microdia 
+Bus 001 Device 005: ID 0bda:0129 Realtek Semiconductor Corp. RTS5129 Card Reader Controller
+Bus 001 Device 007: ID 0cf3:0036 Atheros Communications, Inc. 
+Bus 001 Device 008: ID 09da:f613 A4Tech Co., Ltd. 
+Bus 001 Device 002: ID 8087:8000 Intel Corp. 
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 003 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+##### PCMCIA card info ##################
+
+##### rfkill ############################
+
+0: dell-rbtn: Wireless LAN
+	Soft blocked: no
+	Hard blocked: no
+1: phy0: Wireless LAN
+	Soft blocked: no
+	Hard blocked: no
+2: hci0: Bluetooth
+	Soft blocked: no
+	Hard blocked: no
+
+##### lsmod #############################
+
+dell_wmi               16384  0
+dell_laptop            20480  0
+dcdbas                 16384  1 dell_laptop
+sparse_keymap          16384  1 dell_wmi
+ath9k                 143360  0
+ath9k_common           36864  1 ath9k
+ath9k_hw              466944  2 ath9k_common,ath9k
+ath                    32768  3 ath9k_common,ath9k,ath9k_hw
+mac80211              737280  1 ath9k
+ath3k                  20480  0
+cfg80211              565248  4 ath,ath9k_common,ath9k,mac80211
+bluetooth             520192  30 bnep,ath3k,btbcm,btrtl,btusb,rfcomm,btintel
+wmi                    20480  2 dell_led,dell_wmi
+video                  40960  3 i915,dell_wmi,dell_laptop
+
+##### interfaces ########################
+
+auto lo
+iface lo inet loopback
+
+##### ifconfig ##########################
+
+enp1s0    Link encap:Ethernet  HWaddr <MAC 'enp1s0' [IF1]>  
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:139 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:226 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:8348 (8.3 KB)  TX bytes:81662 (81.6 KB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:8291 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:8291 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1 
+          RX bytes:893595 (893.5 KB)  TX bytes:893595 (893.5 KB)
+
+wlp2s0    Link encap:Ethernet  HWaddr <MAC 'wlp2s0' [IF2]>  
+          inet addr:192.168.1.3  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fd14:b968:2e7e:7400:18:6290:414f:8216/64 Scope:Global
+          inet6 addr: fd14:b968:2e7e:7400:2a02:1f88:2677:a782/64 Scope:Global
+          inet6 addr: fe80::d766:7c86:ccd0:ba5a/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:54958 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:38606 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:64291647 (64.2 MB)  TX bytes:5419562 (5.4 MB)
+
+##### iwconfig ##########################
+
+lo        no wireless extensions.
+
+enp1s0    no wireless extensions.
+
+wlp2s0    IEEE 802.11bgn  ESSID:"Green Arrow"  
+          Mode:Managed  Frequency:2.432 GHz  Access Point: <MAC 'Green Arrow' [AC1]>   
+          Bit Rate=65 Mb/s   Tx-Power=15 dBm   
+          Retry short limit:7   RTS thr:off   Fragment thr:off
+          Power Management:off
+          Link Quality=65/70  Signal level=-45 dBm  
+          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+          Tx excessive retries:0  Invalid misc:6   Missed beacon:0
+
+##### route #############################
+
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.1.1     0.0.0.0         UG    600    0        0 wlp2s0
+169.254.0.0     0.0.0.0         255.255.0.0     U     1000   0        0 wlp2s0
+192.168.1.0     0.0.0.0         255.255.255.0   U     600    0        0 wlp2s0
+
+##### resolv.conf #######################
+
+nameserver 127.0.1.1
+
+##### network managers ##################
+
+Installed:
+
+	NetworkManager
+
+Running:
+
+root       912     1  0 17:18 ?        00:00:03 /usr/sbin/NetworkManager --no-daemon
+
+##### NetworkManager info ###############
+
+GENERAL.DEVICE:                         wlp2s0
+GENERAL.TYPE:                           wifi
+GENERAL.NM-TYPE:                        NMDeviceWifi
+GENERAL.VENDOR:                         Qualcomm Atheros
+GENERAL.PRODUCT:                        QCA9565 / AR9565 Wireless Network Adapter
+GENERAL.DRIVER:                         ath9k
+GENERAL.DRIVER-VERSION:                 4.4.0-59-generic
+GENERAL.FIRMWARE-VERSION:               N/A
+GENERAL.HWADDR:                         <MAC 'wlp2s0' [IF2]>
+GENERAL.MTU:                            0
+GENERAL.STATE:                          100 (connected)
+GENERAL.REASON:                         0 (No reason given)
+GENERAL.UDI:                            /sys/devices/pci0000:00/0000:00:1c.3/0000:02:00.0/net/wlp2s0
+GENERAL.IP-IFACE:                       wlp2s0
+GENERAL.IS-SOFTWARE:                    no
+GENERAL.NM-MANAGED:                     yes
+GENERAL.AUTOCONNECT:                    yes
+GENERAL.FIRMWARE-MISSING:               no
+GENERAL.NM-PLUGIN-MISSING:              no
+GENERAL.PHYS-PORT-ID:                   --
+GENERAL.CONNECTION:                     Green Arrow
+GENERAL.CON-UUID:                       29f1523e-3b19-4ae8-ad09-acbd0694d8be
+GENERAL.CON-PATH:                       /org/freedesktop/NetworkManager/ActiveConnection/13
+GENERAL.METERED:                        no (guessed)
+CAPABILITIES.CARRIER-DETECT:            no
+CAPABILITIES.SPEED:                     65 Mb/s
+CAPABILITIES.IS-SOFTWARE:               no
+WIFI-PROPERTIES.WEP:                    yes
+WIFI-PROPERTIES.WPA:                    yes
+WIFI-PROPERTIES.WPA2:                   yes
+WIFI-PROPERTIES.TKIP:                   yes
+WIFI-PROPERTIES.CCMP:                   yes
+WIFI-PROPERTIES.AP:                     yes
+WIFI-PROPERTIES.ADHOC:                  yes
+WIFI-PROPERTIES.2GHZ:                   yes
+WIFI-PROPERTIES.5GHZ:                   no
+CONNECTIONS.AVAILABLE-CONNECTION-PATHS: /org/freedesktop/NetworkManager/Settings/{0}
+CONNECTIONS.AVAILABLE-CONNECTIONS[1]:   29f1523e-3b19-4ae8-ad09-acbd0694d8be | Green Arrow
+IP4.ADDRESS[1]:                         192.168.1.3/24
+IP4.GATEWAY:                            192.168.1.1
+IP4.ROUTE[1]:                           dst = 169.254.0.0/16, nh = 0.0.0.0, mt = 1000
+IP4.DNS[1]:                             192.168.1.1
+DHCP4.OPTION[1]:                        requested_routers = 1
+DHCP4.OPTION[2]:                        requested_domain_search = 1
+DHCP4.OPTION[3]:                        requested_time_offset = 1
+DHCP4.OPTION[4]:                        requested_domain_name = 1
+DHCP4.OPTION[5]:                        requested_rfc3442_classless_static_routes = 1
+DHCP4.OPTION[6]:                        requested_broadcast_address = 1
+DHCP4.OPTION[7]:                        requested_wpad = 1
+DHCP4.OPTION[8]:                        requested_netbios_scope = 1
+DHCP4.OPTION[9]:                        next_server = 0.0.0.0
+DHCP4.OPTION[10]:                       expiry = 1496249119
+DHCP4.OPTION[11]:                       requested_interface_mtu = 1
+DHCP4.OPTION[12]:                       requested_subnet_mask = 1
+DHCP4.OPTION[13]:                       dhcp_lease_time = 86400
+DHCP4.OPTION[14]:                       dhcp_message_type = 5
+DHCP4.OPTION[15]:                       ip_address = 192.168.1.3
+DHCP4.OPTION[16]:                       requested_static_routes = 1
+DHCP4.OPTION[17]:                       requested_domain_name_servers = 1
+DHCP4.OPTION[18]:                       dhcp_renewal_time = 43200
+DHCP4.OPTION[19]:                       routers = 192.168.1.1
+DHCP4.OPTION[20]:                       broadcast_address = 192.168.1.255
+DHCP4.OPTION[21]:                       domain_name_servers = 192.168.1.1 0.0.0.0
+DHCP4.OPTION[22]:                       requested_ntp_servers = 1
+DHCP4.OPTION[23]:                       requested_netbios_name_servers = 1
+DHCP4.OPTION[24]:                       dhcp_rebinding_time = 75600
+DHCP4.OPTION[25]:                       requested_ms_classless_static_routes = 1
+DHCP4.OPTION[26]:                       subnet_mask = 255.255.255.0
+DHCP4.OPTION[27]:                       network_number = 192.168.1.0
+DHCP4.OPTION[28]:                       requested_host_name = 1
+DHCP4.OPTION[29]:                       dhcp_server_identifier = 192.168.1.1
+IP6.ADDRESS[1]:                         fd14:b968:2e7e:7400:18:6290:414f:8216/64
+IP6.ADDRESS[2]:                         fd14:b968:2e7e:7400:2a02:1f88:2677:a782/64
+IP6.ADDRESS[3]:                         fe80::d766:7c86:ccd0:ba5a/64
+IP6.GATEWAY:                            
+IP6.ROUTE[1]:                           dst = fd14:b968:2e7e:7400::/64, nh = ::, mt = 600
+
+GENERAL.DEVICE:                         enp1s0
+GENERAL.TYPE:                           ethernet
+GENERAL.NM-TYPE:                        NMDeviceEthernet
+GENERAL.VENDOR:                         Realtek Semiconductor Co., Ltd.
+GENERAL.PRODUCT:                        RTL8101/2/6E PCI Express Fast/Gigabit Ethernet controller
+GENERAL.DRIVER:                         r8169
+GENERAL.DRIVER-VERSION:                 2.3LK-NAPI
+GENERAL.FIRMWARE-VERSION:               
+GENERAL.HWADDR:                         <MAC 'enp1s0' [IF1]>
+GENERAL.MTU:                            1500
+GENERAL.STATE:                          20 (unavailable)
+GENERAL.REASON:                         40 (Carrier/link changed)
+GENERAL.UDI:                            /sys/devices/pci0000:00/0000:00:1c.0/0000:01:00.0/net/enp1s0
+GENERAL.IP-IFACE:                       
+GENERAL.IS-SOFTWARE:                    no
+GENERAL.NM-MANAGED:                     yes
+GENERAL.AUTOCONNECT:                    yes
+GENERAL.FIRMWARE-MISSING:               no
+GENERAL.NM-PLUGIN-MISSING:              no
+GENERAL.PHYS-PORT-ID:                   --
+GENERAL.CONNECTION:                     --
+GENERAL.CON-UUID:                       --
+GENERAL.CON-PATH:                       --
+GENERAL.METERED:                        unknown
+CAPABILITIES.CARRIER-DETECT:            yes
+CAPABILITIES.SPEED:                     100 Mb/s
+CAPABILITIES.IS-SOFTWARE:               no
+WIRED-PROPERTIES.CARRIER:               off
+CONNECTIONS.AVAILABLE-CONNECTION-PATHS: 
+
+SSID                          BSSID              MODE   CHAN  FREQ      RATE       SIGNAL  BARS  SECURITY     ACTIVE  * 
+Green Arrow                   <MAC 'Green Arrow' [AC1]>  Infra  5     2432 MHz  54 Mbit/s  74      ▂▄▆_  WPA1         yes     * 
+UniFi                         <MAC 'UniFi' [AC9]>  Infra  11    2462 MHz  54 Mbit/s  70      ▂▄▆_  WPA2 802.1X  no        
+stojacic                      <MAC 'stojacic' [AC12]>  Infra  11    2462 MHz  54 Mbit/s  70      ▂▄▆_  WPA1 WPA2    no        
+ASUSK555L 5143                <MAC 'ASUSK555L 5143' [AC11]>  Infra  11    2462 MHz  54 Mbit/s  60      ▂▄▆_  WPA2         no        
+--                            <MAC '--' [AN5]>  Infra  1     2412 MHz  54 Mbit/s  54      ▂▄__  WPA2         no        
+--                            <MAC '--' [AN6]>  Infra  1     2412 MHz  54 Mbit/s  42      ▂▄__  WPA2         no        
+UniFi                         <MAC 'UniFi' [AC6]>  Infra  1     2412 MHz  54 Mbit/s  40      ▂▄__  WPA2 802.1X  no        
+7098e8                        <MAC '7098e8' [AC5]>  Infra  1     2412 MHz  54 Mbit/s  39      ▂▄__  WPA1 WPA2    no        
+Ultramarin                    <MAC 'Ultramarin' [AC8]>  Infra  2     2417 MHz  54 Mbit/s  37      ▂▄__  WPA2         no        
+MK Group                      <MAC 'MK Group' [AC7]>  Infra  1     2412 MHz  54 Mbit/s  35      ▂▄__  WPA2 802.1X  no        
+Stanimir                      <MAC 'Stanimir' [AC10]>  Infra  11    2462 MHz  54 Mbit/s  35      ▂▄__  WPA1 WPA2    no        
+UniFi                         <MAC 'UniFi' [AN12]>  Infra  11    2462 MHz  54 Mbit/s  32      ▂▄__  WPA2 802.1X  no        
+bfdb00                        <MAC 'bfdb00' [AC13]>  Infra  11    2462 MHz  54 Mbit/s  30      ▂___  WPA1 WPA2    no        
+Guests                        <MAC 'Guests' [AC4]>  Infra  1     2412 MHz  54 Mbit/s  29      ▂___  WPA2         no        
+UniFi                         <MAC 'UniFi' [AN15]>  Infra  11    2462 MHz  54 Mbit/s  27      ▂___  WPA2 802.1X  no        
+UniFi                         <MAC 'UniFi' [AC3]>  Infra  1     2412 MHz  54 Mbit/s  25      ▂___  WPA2 802.1X  no        
+95ae10                        <MAC '95ae10' [AC2]>  Infra  1     2412 MHz  54 Mbit/s  25      ▂___  WPA1 WPA2    no        
+Jelena                        <MAC 'Jelena' [AN18]>  Infra  6     2437 MHz  54 Mbit/s  22      ▂___  WPA1 WPA2    no        
+HP-Print-90-LaserJet 400 MFP  <MAC 'HP-Print-90-LaserJet 400 MFP' [AN19]>  Infra  6     2437 MHz  54 Mbit/s  22      ▂___  WPA2         no        
+Fortuna                       <MAC 'Fortuna' [AN20]>  Infra  2     2417 MHz  54 Mbit/s  20      ▂___  WPA1         no        
+nisam dobar komsija           <MAC 'nisam dobar komsija' [AN21]>  Infra  3     2422 MHz  54 Mbit/s  19      ▂___  WPA1         no        
+MK Group                      <MAC 'MK Group' [AN22]>  Infra  6     2437 MHz  54 Mbit/s  10      ▂___  WPA2 802.1X  no        
+
+##### NetworkManager.state ##############
+
+[main]
+NetworkingEnabled=true
+WirelessEnabled=true
+WWANEnabled=true
+
+##### NetworkManager.conf ###############
+
+[main]
+plugins=ifupdown,keyfile,ofono
+dns=dnsmasq
+
+[ifupdown]
+managed=false
+
+##### NetworkManager profiles ###########
+
+[[/etc/NetworkManager/system-connections/Green Arrow]] (600 root)
+[connection] id=Green Arrow | type=wifi | permissions=
+[wifi] mac-address=<MAC 'wlp2s0' [IF2]> | mac-address-blacklist= | ssid=Green Arrow
+[ipv4] method=auto
+[ipv6] method=auto
+
+##### iw reg get ########################
+
+Region: Europe/Belgrade (based on set time zone)
+
+country 00: DFS-UNSET
+	(2402 - 2472 @ 40), (N/A, 20), (N/A)
+	(2457 - 2482 @ 40), (N/A, 20), (N/A), NO-IR
+	(2474 - 2494 @ 20), (N/A, 20), (N/A), NO-OFDM, NO-IR
+	(5170 - 5250 @ 80), (N/A, 20), (N/A), NO-IR
+	(5250 - 5330 @ 80), (N/A, 20), (0 ms), DFS, NO-IR
+	(5490 - 5730 @ 160), (N/A, 20), (0 ms), DFS, NO-IR
+	(5735 - 5835 @ 80), (N/A, 20), (N/A), NO-IR
+	(57240 - 63720 @ 2160), (N/A, 0), (N/A)
+
+##### iwlist channels ###################
+
+lo        no frequency information.
+
+enp1s0    no frequency information.
+
+wlp2s0    14 channels in total; available frequencies :
+          Channel 01 : 2.412 GHz
+          Channel 02 : 2.417 GHz
+          Channel 03 : 2.422 GHz
+          Channel 04 : 2.427 GHz
+          Channel 05 : 2.432 GHz
+          Channel 06 : 2.437 GHz
+          Channel 07 : 2.442 GHz
+          Channel 08 : 2.447 GHz
+          Channel 09 : 2.452 GHz
+          Channel 10 : 2.457 GHz
+          Channel 11 : 2.462 GHz
+          Channel 12 : 2.467 GHz
+          Channel 13 : 2.472 GHz
+          Channel 14 : 2.484 GHz
+          Current Frequency:2.432 GHz (Channel 5)
+
+##### iwlist scan #######################
+
+lo        Interface doesn't support scanning.
+
+enp1s0    Interface doesn't support scanning.
+
+Channel occupancy:
+
+      6   APs on   Frequency:2.412 GHz (Channel 1)
+      1   APs on   Frequency:2.432 GHz (Channel 5)
+      1   APs on   Frequency:2.452 GHz (Channel 9)
+      5   APs on   Frequency:2.462 GHz (Channel 11)
+
+wlp2s0    Scan completed :
+          Cell 01 - Address: <MAC 'Green Arrow' [AC1]>
+                    Channel:5
+                    Frequency:2.432 GHz (Channel 5)
+                    Quality=64/70  Signal level=-46 dBm  
+                    Encryption key:on
+                    ESSID:"Green Arrow"
+                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s; 6 Mb/s
+                              9 Mb/s; 12 Mb/s; 18 Mb/s
+                    Bit Rates:24 Mb/s; 36 Mb/s; 48 Mb/s; 54 Mb/s
+                    Mode:Master
+                    Extra:tsf=00000351bad7faf4
+                    Extra: Last beacon: 76ms ago
+                    IE: WPA Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+          Cell 02 - Address: <MAC '95ae10' [AC2]>
+                    Channel:1
+                    Frequency:2.412 GHz (Channel 1)
+                    Quality=33/70  Signal level=-77 dBm  
+                    Encryption key:on
+                    ESSID:"95ae10"
+                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s; 18 Mb/s
+                              24 Mb/s; 36 Mb/s; 54 Mb/s
+                    Bit Rates:6 Mb/s; 9 Mb/s; 12 Mb/s; 48 Mb/s
+                    Mode:Master
+                    Extra:tsf=00000021b2c40c1e
+                    Extra: Last beacon: 76ms ago
+                    IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : TKIP
+                        Pairwise Ciphers (2) : CCMP TKIP
+                        Authentication Suites (1) : PSK
+                    IE: WPA Version 1
+                        Group Cipher : TKIP
+                        Pairwise Ciphers (2) : CCMP TKIP
+                        Authentication Suites (1) : PSK
+          Cell 03 - Address: <MAC 'UniFi' [AC3]>
+                    Channel:1
+                    Frequency:2.412 GHz (Channel 1)
+                    Quality=32/70  Signal level=-78 dBm  
+                    Encryption key:on
+                    ESSID:"UniFi"
+                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s; 18 Mb/s
+                              24 Mb/s; 36 Mb/s; 54 Mb/s
+                    Bit Rates:6 Mb/s; 9 Mb/s; 12 Mb/s; 48 Mb/s
+                    Mode:Master
+                    Extra:tsf=00000021b2c40298
+                    Extra: Last beacon: 76ms ago
+                    IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : 802.1x
+          Cell 04 - Address: <MAC 'Guests' [AC4]>
+                    Channel:1
+                    Frequency:2.412 GHz (Channel 1)
+                    Quality=41/70  Signal level=-69 dBm  
+                    Encryption key:on
+                    ESSID:"Guests"
+                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 6 Mb/s; 9 Mb/s
+                              11 Mb/s; 12 Mb/s; 18 Mb/s
+                    Bit Rates:24 Mb/s; 36 Mb/s; 48 Mb/s; 54 Mb/s
+                    Mode:Master
+                    Extra:tsf=0000001346a9718c
+                    Extra: Last beacon: 2632ms ago
+                    IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+          Cell 05 - Address: <MAC '7098e8' [AC5]>
+                    Channel:1
+                    Frequency:2.412 GHz (Channel 1)
+                    Quality=39/70  Signal level=-71 dBm  
+                    Encryption key:on
+                    ESSID:"7098e8"
+                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s; 18 Mb/s
+                              24 Mb/s; 36 Mb/s; 54 Mb/s
+                    Bit Rates:6 Mb/s; 9 Mb/s; 12 Mb/s; 48 Mb/s
+                    Mode:Master
+                    Extra:tsf=00000004ba00a37c
+                    Extra: Last beacon: 76ms ago
+                    IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+                    IE: WPA Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+          Cell 06 - Address: <MAC 'UniFi' [AC6]>
+                    Channel:1
+                    Frequency:2.412 GHz (Channel 1)
+                    Quality=43/70  Signal level=-67 dBm  
+                    Encryption key:on
+                    ESSID:"UniFi"
+                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s; 18 Mb/s
+                              24 Mb/s; 36 Mb/s; 54 Mb/s
+                    Bit Rates:6 Mb/s; 9 Mb/s; 12 Mb/s; 48 Mb/s
+                    Mode:Master
+                    Extra:tsf=00000004ba00ad79
+                    Extra: Last beacon: 76ms ago
+                    IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : 802.1x
+          Cell 07 - Address: <MAC 'MK Group' [AC7]>
+                    Channel:1
+                    Frequency:2.412 GHz (Channel 1)
+                    Quality=41/70  Signal level=-69 dBm  
+                    Encryption key:on
+                    ESSID:"MK Group"
+                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 6 Mb/s; 9 Mb/s
+                              11 Mb/s; 12 Mb/s; 18 Mb/s
+                    Bit Rates:24 Mb/s; 36 Mb/s; 48 Mb/s; 54 Mb/s
+                    Mode:Master
+                    Extra:tsf=0000001346a8ac97
+                    Extra: Last beacon: 76ms ago
+                    IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : 802.1x
+          Cell 08 - Address: <MAC 'Ultramarin' [AC8]>
+                    Channel:9
+                    Frequency:2.452 GHz (Channel 9)
+                    Quality=28/70  Signal level=-82 dBm  
+                    Encryption key:on
+                    ESSID:"Ultramarin"
+                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s; 6 Mb/s
+                              9 Mb/s; 12 Mb/s; 18 Mb/s
+                    Bit Rates:24 Mb/s; 36 Mb/s; 48 Mb/s; 54 Mb/s
+                    Mode:Master
+                    Extra:tsf=0000034e36d5c725
+                    Extra: Last beacon: 1336ms ago
+                    IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+          Cell 09 - Address: <MAC 'UniFi' [AC9]>
+                    Channel:11
+                    Frequency:2.462 GHz (Channel 11)
+                    Quality=45/70  Signal level=-65 dBm  
+                    Encryption key:on
+                    ESSID:"UniFi"
+                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s
+                    Bit Rates:6 Mb/s; 9 Mb/s; 12 Mb/s; 18 Mb/s; 24 Mb/s
+                              36 Mb/s; 48 Mb/s; 54 Mb/s
+                    Mode:Master
+                    Extra:tsf=00000013e0432e4b
+                    Extra: Last beacon: 76ms ago
+                    IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : 802.1x
+          Cell 10 - Address: <MAC 'Stanimir' [AC10]>
+                    Channel:11
+                    Frequency:2.462 GHz (Channel 11)
+                    Quality=27/70  Signal level=-83 dBm  
+                    Encryption key:on
+                    ESSID:"Stanimir"
+                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s; 18 Mb/s
+                              24 Mb/s; 36 Mb/s; 54 Mb/s
+                    Bit Rates:6 Mb/s; 9 Mb/s; 12 Mb/s; 48 Mb/s
+                    Mode:Master
+                    Extra:tsf=000000136c4724ce
+                    Extra: Last beacon: 1068ms ago
+                    IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+                    IE: WPA Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+          Cell 11 - Address: <MAC 'ASUSK555L 5143' [AC11]>
+                    Channel:11
+                    Frequency:2.462 GHz (Channel 11)
+                    Quality=45/70  Signal level=-65 dBm  
+                    Encryption key:on
+                    ESSID:"ASUSK555L 5143"
+                    Bit Rates:6 Mb/s; 9 Mb/s; 12 Mb/s; 18 Mb/s; 24 Mb/s
+                              36 Mb/s; 48 Mb/s; 54 Mb/s
+                    Mode:Master
+                    Extra:tsf=0000000654294486
+                    Extra: Last beacon: 76ms ago
+                    IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+          Cell 12 - Address: <MAC 'stojacic' [AC12]>
+                    Channel:11
+                    Frequency:2.462 GHz (Channel 11)
+                    Quality=54/70  Signal level=-56 dBm  
+                    Encryption key:on
+                    ESSID:"stojacic"
+                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s
+                    Bit Rates:6 Mb/s; 9 Mb/s; 12 Mb/s; 18 Mb/s; 24 Mb/s
+                              36 Mb/s; 48 Mb/s; 54 Mb/s
+                    Mode:Master
+                    Extra:tsf=00000013e0431af7
+                    Extra: Last beacon: 76ms ago
+                    IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+                    IE: WPA Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+          Cell 13 - Address: <MAC 'bfdb00' [AC13]>
+                    Channel:11
+                    Frequency:2.462 GHz (Channel 11)
+                    Quality=29/70  Signal level=-81 dBm  
+                    Encryption key:on
+                    ESSID:"bfdb00"
+                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s; 18 Mb/s
+                              24 Mb/s; 36 Mb/s; 54 Mb/s
+                    Bit Rates:6 Mb/s; 9 Mb/s; 12 Mb/s; 48 Mb/s
+                    Mode:Master
+                    Extra:tsf=00000004c07f0271
+                    Extra: Last beacon: 76ms ago
+                    IE: IEEE 802.11i/WPA2 Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+                    IE: WPA Version 1
+                        Group Cipher : CCMP
+                        Pairwise Ciphers (1) : CCMP
+                        Authentication Suites (1) : PSK
+
+##### module infos ######################
+
+[ath9k]
+filename:       /lib/modules/4.4.0-59-generic/kernel/drivers/net/wireless/ath/ath9k/ath9k.ko
+license:        Dual BSD/GPL
+description:    Support for Atheros 802.11n wireless LAN cards.
+author:         Atheros Communications
+srcversion:     1B84AD8C53440158CD581F2
+depends:        mac80211,ath9k_hw,ath9k_common,cfg80211,ath
+intree:         Y
+vermagic:       4.4.0-59-generic SMP mod_unload modversions 
+parm:           debug:Debugging mask (uint)
+parm:           nohwcrypt:Disable hardware encryption (int)
+parm:           blink:Enable LED blink on activity (int)
+parm:           led_active_high:Invert LED polarity (int)
+parm:           btcoex_enable:Enable wifi-BT coexistence (int)
+parm:           bt_ant_diversity:Enable WLAN/BT RX antenna diversity (int)
+parm:           ps_enable:Enable WLAN PowerSave (int)
+parm:           use_chanctx:Enable channel context for concurrency (int)
+
+[ath9k_common]
+filename:       /lib/modules/4.4.0-59-generic/kernel/drivers/net/wireless/ath/ath9k/ath9k_common.ko
+license:        Dual BSD/GPL
+description:    Shared library for Atheros wireless 802.11n LAN cards.
+author:         Atheros Communications
+srcversion:     6FBD9F8A613FDFA282AB4FE
+depends:        ath9k_hw,cfg80211,ath
+intree:         Y
+vermagic:       4.4.0-59-generic SMP mod_unload modversions 
+
+[ath9k_hw]
+filename:       /lib/modules/4.4.0-59-generic/kernel/drivers/net/wireless/ath/ath9k/ath9k_hw.ko
+license:        Dual BSD/GPL
+description:    Support for Atheros 802.11n wireless LAN cards.
+author:         Atheros Communications
+srcversion:     FA7ECFBA5761A5B3ED96BB2
+depends:        ath
+intree:         Y
+vermagic:       4.4.0-59-generic SMP mod_unload modversions 
+
+[ath]
+filename:       /lib/modules/4.4.0-59-generic/kernel/drivers/net/wireless/ath/ath.ko
+license:        Dual BSD/GPL
+description:    Shared library for Atheros wireless LAN cards.
+author:         Atheros Communications
+srcversion:     3FCDBF7CE71CB8FB980D59D
+depends:        cfg80211
+intree:         Y
+vermagic:       4.4.0-59-generic SMP mod_unload modversions 
+
+[mac80211]
+filename:       /lib/modules/4.4.0-59-generic/kernel/net/mac80211/mac80211.ko
+license:        GPL
+description:    IEEE 802.11 subsystem
+srcversion:     0B114888238BEBBE8043BC5
+depends:        cfg80211
+intree:         Y
+vermagic:       4.4.0-59-generic SMP mod_unload modversions 
+parm:           minstrel_vht_only:Use only VHT rates when VHT is supported by sta. (bool)
+parm:           max_nullfunc_tries:Maximum nullfunc tx tries before disconnecting (reason 4). (int)
+parm:           max_probe_tries:Maximum probe tries before disconnecting (reason 4). (int)
+parm:           beacon_loss_count:Number of beacon intervals before we decide beacon was lost. (int)
+parm:           probe_wait_ms:Maximum time(ms) to wait for probe response before disconnecting (reason 4). (int)
+parm:           ieee80211_default_rc_algo:Default rate control algorithm for mac80211 to use (charp)
+
+[ath3k]
+filename:       /lib/modules/4.4.0-59-generic/kernel/drivers/bluetooth/ath3k.ko
+firmware:       ath3k-1.fw
+license:        GPL
+version:        1.0
+description:    Atheros AR30xx firmware driver
+author:         Atheros Communications
+srcversion:     2B85DCB887D9376A61652DD
+depends:        bluetooth
+intree:         Y
+vermagic:       4.4.0-59-generic SMP mod_unload modversions 
+
+[cfg80211]
+filename:       /lib/modules/4.4.0-59-generic/kernel/net/wireless/cfg80211.ko
+description:    wireless configuration support
+license:        GPL
+author:         Johannes Berg
+srcversion:     FD4B9DA2F385F0531B5CB0B
+depends:        
+intree:         Y
+vermagic:       4.4.0-59-generic SMP mod_unload modversions 
+parm:           ieee80211_regdom:IEEE 802.11 regulatory domain code (charp)
+parm:           cfg80211_disable_40mhz_24ghz:Disable 40MHz support in the 2.4GHz band (bool)
+
+##### module parameters #################
+
+[ath9k]
+blink: 0
+bt_ant_diversity: 0
+btcoex_enable: 0
+led_active_high: -1
+nohwcrypt: 0
+ps_enable: 0
+use_chanctx: 0
+
+[mac80211]
+beacon_loss_count: 7
+ieee80211_default_rc_algo: minstrel_ht
+max_nullfunc_tries: 2
+max_probe_tries: 5
+minstrel_vht_only: Y
+probe_wait_ms: 500
+
+[cfg80211]
+cfg80211_disable_40mhz_24ghz: N
+ieee80211_regdom: 00
+
+##### /etc/modules ######################
+
+##### modprobe options ##################
+
+[/etc/modprobe.d/blacklist-ath_pci.conf]
+blacklist ath_pci
+
+[/etc/modprobe.d/blacklist.conf]
+blacklist evbug
+blacklist usbmouse
+blacklist usbkbd
+blacklist eepro100
+blacklist de4x5
+blacklist eth1394
+blacklist snd_intel8x0m
+blacklist snd_aw2
+blacklist i2c_i801
+blacklist prism54
+blacklist bcm43xx
+blacklist garmin_gps
+blacklist asus_acpi
+blacklist snd_pcsp
+blacklist pcspkr
+blacklist amd76x_edac
+
+[/etc/modprobe.d/blacklist-rare-network.conf]
+alias net-pf-3 off
+alias net-pf-6 off
+alias net-pf-9 off
+alias net-pf-11 off
+alias net-pf-12 off
+alias net-pf-19 off
+alias net-pf-21 off
+alias net-pf-36 off
+
+[/etc/modprobe.d/iwlwifi.conf]
+remove iwlwifi \
+(/sbin/lsmod | grep -o -e ^iwlmvm -e ^iwldvm -e ^iwlwifi | xargs /sbin/rmmod) \
+&& /sbin/modprobe -r mac80211
+
+[/etc/modprobe.d/mlx4.conf]
+softdep mlx4_core post: mlx4_en
+
+##### rc.local ##########################
+
+exit 0
+
+##### pm-utils ##########################
+
+##### udev rules ########################
+
+##### dmesg #############################
+
+[ 4017.568547] wlp2s0: authenticate with <MAC 'Green Arrow' [AC1]>
+[ 4017.582143] wlp2s0: send auth to <MAC 'Green Arrow' [AC1]> (try 1/3)
+[ 4017.584012] wlp2s0: authenticated
+[ 4017.587160] wlp2s0: associate with <MAC 'Green Arrow' [AC1]> (try 1/3)
+[ 4017.595315] wlp2s0: RX AssocResp from <MAC 'Green Arrow' [AC1]> (capab=0x411 status=0 aid=1)
+[ 4017.595327] wlp2s0: AP has invalid WMM params (AIFSN=1 for ACI 2), will use 2
+[ 4017.595328] wlp2s0: AP has invalid WMM params (AIFSN=1 for ACI 3), will use 2
+[ 4017.595422] wlp2s0: associated
+[ 4026.346945] device wlp2s0 left promiscuous mode
+[ 4124.235459] device wlp2s0 entered promiscuous mode
+[ 4132.668811] device wlp2s0 left promiscuous mode
+[ 4243.232851] wlp2s0: deauthenticating from <MAC 'Green Arrow' [AC1]> by local choice (Reason: 3=DEAUTH_LEAVING)
+[ 4244.603962] wlp2s0: authenticate with <MAC 'Green Arrow' [AC1]>
+[ 4244.622119] wlp2s0: send auth to <MAC 'Green Arrow' [AC1]> (try 1/3)
+[ 4244.625141] wlp2s0: authenticated
+[ 4244.626899] wlp2s0: associate with <MAC 'Green Arrow' [AC1]> (try 1/3)
+[ 4244.636323] wlp2s0: RX AssocResp from <MAC 'Green Arrow' [AC1]> (capab=0x411 status=0 aid=1)
+[ 4244.636335] wlp2s0: AP has invalid WMM params (AIFSN=1 for ACI 2), will use 2
+[ 4244.636337] wlp2s0: AP has invalid WMM params (AIFSN=1 for ACI 3), will use 2
+[ 4244.636431] wlp2s0: associated
+[ 4244.802931] wlp2s0: deauthenticating from <MAC 'Green Arrow' [AC1]> by local choice (Reason: 3=DEAUTH_LEAVING)
+[ 4245.767719] wlp2s0: authenticate with <MAC 'Green Arrow' [AC1]>
+[ 4245.785915] wlp2s0: send auth to <MAC 'Green Arrow' [AC1]> (try 1/3)
+[ 4245.789332] wlp2s0: authenticated
+[ 4245.790763] wlp2s0: associate with <MAC 'Green Arrow' [AC1]> (try 1/3)
+[ 4245.798956] wlp2s0: RX AssocResp from <MAC 'Green Arrow' [AC1]> (capab=0x411 status=0 aid=1)
+[ 4245.798969] wlp2s0: AP has invalid WMM params (AIFSN=1 for ACI 2), will use 2
+[ 4245.798971] wlp2s0: AP has invalid WMM params (AIFSN=1 for ACI 3), will use 2
+[ 4245.799066] wlp2s0: associated
+[ 5139.165021] wlp2s0: deauthenticating from <MAC 'Green Arrow' [AC1]> by local choice (Reason: 3=DEAUTH_LEAVING)
+[ 5140.130353] wlp2s0: authenticate with <MAC 'Green Arrow' [AC1]>
+[ 5140.147914] wlp2s0: send auth to <MAC 'Green Arrow' [AC1]> (try 1/3)
+[ 5140.150565] wlp2s0: authenticated
+[ 5140.152996] wlp2s0: associate with <MAC 'Green Arrow' [AC1]> (try 1/3)
+[ 5140.161177] wlp2s0: RX AssocResp from <MAC 'Green Arrow' [AC1]> (capab=0x411 status=0 aid=1)
+[ 5140.161188] wlp2s0: AP has invalid WMM params (AIFSN=1 for ACI 2), will use 2
+[ 5140.161190] wlp2s0: AP has invalid WMM params (AIFSN=1 for ACI 3), will use 2
+[ 5140.161294] wlp2s0: associated
+[ 5146.128845] device wlp2s0 entered promiscuous mode
+[ 5151.301148] device wlp2s0 left promiscuous mode
+[ 5184.123992] device wlp2s0 entered promiscuous mode
+[ 5191.101249] device wlp2s0 left promiscuous mode
+[ 5213.244153] wlp2s0: deauthenticating from <MAC 'Green Arrow' [AC1]> by local choice (Reason: 3=DEAUTH_LEAVING)
+[ 5214.612587] wlp2s0: authenticate with <MAC 'Green Arrow' [AC1]>
+[ 5214.630509] wlp2s0: send auth to <MAC 'Green Arrow' [AC1]> (try 1/3)
+[ 5214.634728] wlp2s0: authenticated
+[ 5214.635875] wlp2s0: associate with <MAC 'Green Arrow' [AC1]> (try 1/3)
+[ 5214.644691] wlp2s0: RX AssocResp from <MAC 'Green Arrow' [AC1]> (capab=0x411 status=0 aid=1)
+[ 5214.644702] wlp2s0: AP has invalid WMM params (AIFSN=1 for ACI 2), will use 2
+[ 5214.644703] wlp2s0: AP has invalid WMM params (AIFSN=1 for ACI 3), will use 2
+[ 5214.644796] wlp2s0: associated
+
+########## wireless info END ############
+
