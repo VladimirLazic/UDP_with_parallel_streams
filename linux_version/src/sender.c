@@ -247,7 +247,7 @@ void create_packet_header(unsigned char *datagram , struct Datagram data) {
 
 	memcpy(datagram, eth_hdr, sizeof(ethernet_header));
 	memcpy(datagram + sizeof(ethernet_header), ip_hdr, sizeof(ip_header));
-	memcpy(datagram + sizeof(ethernet_header) + sizeof(ip_header), udp_hdr, sizeof(udp_header));
+	memcpy(datagram + sizeof(ethernet_header) + sizeof(ip_header) - 4, udp_hdr, sizeof(udp_header));
 
 	udp_hdr = NULL;
 	ip_hdr = NULL;
