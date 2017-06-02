@@ -24,6 +24,7 @@
 #define DEFAULT_MESSAGE_LEN 512
 #define BUF_LEN 512
 #define NUM_OF_THREADS 5
+#define EXIT_SUCCESS 1
 
 int NumberOfPackets = 0;
 
@@ -33,7 +34,10 @@ typedef struct Datagram
 	char message[DEFAULT_MESSAGE_LEN];
 	int datagram_id;
 	bool sent;
+	bool final;
 };
+
+#include "headers.c"
 
 struct Datagram recivedDatagrams[DEFAULT_FILE_LEN];
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -60,8 +64,6 @@ int main() {
 	pcap_if_t *device;						// Network interface controller
 	unsigned int netmask;
 	char error_buffer[PCAP_ERRBUF_SIZE];	// Error buffer
-	char filter_exp[] = "udp and ip 192.168.1.7";
-	struct bpf_program fcode;
 	pthread_t device_thread[NUM_OF_THREADS] , *device_threads , cancel;
 	int i = 0, NumberOfThreads = 0;
 	unsigned char working_intefaces = 0;
@@ -133,11 +135,12 @@ void *device_thread_function(void *device) {
 	pcap_if_t *thread_device = (pcap_if_t *)device;
 	pcap_t* device_handle;					// Descriptor of capture device
 	char error_buffer[PCAP_ERRBUF_SIZE];	// Error buffer
-	char packet[12 + sizeof(struct Datagram)];
 	unsigned int netmask;
 	char filter_exp[] = "udp and src 192.168.1.3";
 	struct bpf_program fcode;
 	int i = 0;
+	unsigned char packet[sizeof(ethernet_header) + sizeof(ip_header) + sizeof(udp_header) + sizeof(struct Datagram)];
+	struct Datagram ack;
 
 	// Open the capture device
 	if ((device_handle = pcap_open_live(thread_device->name,
@@ -177,10 +180,23 @@ void *device_thread_function(void *device) {
 		return;
 	}
 
+	memset(&ack , 0 , sizeof(struct Datagram));
+	strcpy(ack.message , "ACK");
 
 	printf("\nListening on %s...\n", thread_device->description);
+	while(1) {
+		pcap_loop(device_handle, 1, packet_handler, NULL);
 
-	pcap_loop(device_handle, 35, packet_handler, NULL);
+		//Sending ack
+		create_packet_header(packet , ack);
+		memcpy(packet + sizeof(ethernet_header) + sizeof(ip_header) + sizeof(udp_header) , &ack , sizeof(struct Datagram));
+
+		if (pcap_sendpacket(device_handle, packet, sizeof(ethernet_header) + sizeof(ip_header) + sizeof(udp_header) + sizeof(struct Datagram)) != 0) {
+			printf("Error sending ack by thread %s\n", thread_device->name);
+		} else {
+			printf("Success sending ack by thread: %s\n", thread_device->name);
+		}
+	}
 }
 
 
@@ -210,6 +226,12 @@ void packet_handler(unsigned char *param, const struct pcap_pkthdr *packet_heade
 				//printf("Packet len: %d\t Cap len: %d\n", packet_header->len , packet_header->caplen);
 				memcpy(&temp, packet_data + sizeof(ethernet_header) + sizeof(ip_header) + sizeof(udp_header), sizeof(struct Datagram));
 				memcpy(&recivedDatagrams[temp.datagram_id], &temp, sizeof(struct Datagram));
+
+				if(temp.final) {
+					printf("Recived final datagram. Exiting...\n");
+					save_datagrams_to_file();
+					exit(EXIT_SUCCESS);
+				}
 			}
 		}
 	}

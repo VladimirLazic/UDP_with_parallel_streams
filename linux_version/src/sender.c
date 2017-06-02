@@ -35,13 +35,15 @@ typedef struct Datagram
 	char message[DEFAULT_MESSAGE_LEN];
 	int datagram_id;
 	bool sent;
+	bool final;
 };
 
-#include"headers.h"
+#include"headers.c"
 
 //An array of datagrams to be sent
 struct Datagram datagrams[DEFAULT_FILE_LEN];
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+bool ack = false;
 
 
 void packet_handler(unsigned char *param, const struct pcap_pkthdr *packet_header, const unsigned char *packet_data);
@@ -74,10 +76,13 @@ void fill_datagrams(char* file_name) {
 		}
 
 		datagrams[i].datagram_id = i;
+		datagrams[i].final = false;
 		strcpy(datagrams[i].message, line);
 		i++;
 		NumberOfPackets = i;
 	}
+
+	datagrams[NumberOfPackets - 1].final = true;
 
 }
 
@@ -86,7 +91,6 @@ int main(int argc, char **argv) {
 	pcap_if_t *device;						// Network interface controller
 	unsigned int netmask;
 	char error_buffer[PCAP_ERRBUF_SIZE];	// Error buffer
-	char filter_exp[] = "udp";
 	struct bpf_program fcode;
 	pthread_t device_thread[NUM_OF_THREADS] , *device_threads;
 	int i = 0 , NumberOfThreads = 0 , device_number[2];
@@ -146,6 +150,9 @@ void *device_thread_function(void *device) {
 	pcap_if_t *thread_device = (pcap_if_t *)device;
 	pcap_t* device_handle;					// Descriptor of capture device
 	char error_buffer[PCAP_ERRBUF_SIZE];	// Error buffer
+	unsigned int netmask;
+	char filter_exp[] = "udp and src 192.168.1.3";
+	struct bpf_program fcode;
 	unsigned char packet[sizeof(ethernet_header) + sizeof(ip_header) + sizeof(udp_header) + sizeof(struct Datagram)];
 	int i = 0;
 
@@ -162,6 +169,33 @@ void *device_thread_function(void *device) {
 		printf("\nUnable to open the adapter. %s is not supported by libpcap/WinPcap\n", thread_device->name);
 		return;
 	}
+
+	#ifdef _WIN32
+		if (thread_device->addresses != NULL)
+			/* Retrieve the mask of the first address of the interface */
+			netmask = ((struct sockaddr_in *)(thread_device->addresses->netmask))->sin_addr.S_un.S_addr;
+		else
+			/* If the interface is without addresses we suppose to be in a C class network */
+			netmask = 0xffffff;
+	#else
+		if (!thread_device->addresses->netmask)
+			netmask = 0;
+		else
+			netmask = ((struct sockaddr_in *)(thread_device->addresses->netmask))->sin_addr.s_addr;
+	#endif
+
+		// Compile the filter
+		if (pcap_compile(device_handle, &fcode, filter_exp, 1, netmask) < 0)
+		{
+			printf("\n Unable to compile the packet filter. Check the syntax.\n");
+			return;
+		}
+		// Set the filter
+		if (pcap_setfilter(device_handle, &fcode) < 0)
+		{
+			printf("\n Error setting the filter.\n");
+			return;
+		}
 
 
 	for (i = 0; i < NumberOfPackets; i++) {
@@ -180,5 +214,46 @@ void *device_thread_function(void *device) {
 			}
 		}
 		pthread_mutex_unlock(&mutex);
+
+		pcap_loop(device_handle , 1 , packet_handler , NULL);
+
+		pthread_mutex_lock(&mutex);
+		if(!ack) {
+			i--;
+		}
+		ack = false;
+		pthread_mutex_unlock(&mutex);
 	}
+}
+
+void packet_handler(unsigned char *param, const struct pcap_pkthdr *packet_header, const unsigned char *packet_data) {
+	pthread_mutex_lock(&mutex);
+	struct Datagram temp;
+	ethernet_header* eh;
+	char *data[sizeof(struct Datagram)];
+	eh = (ethernet_header*)packet_data;
+	unsigned char ipv4_addr_dst[4];
+
+	ipv4_addr_dst[0] = (char)192;
+	ipv4_addr_dst[1] = (char)168;
+	ipv4_addr_dst[2] = (char)1;
+	ipv4_addr_dst[3] = (char)3;
+
+	// Check the type of next protocol in packet
+	if (ntohs(eh->type) == 0x800)	// Ipv4
+	{
+		ip_header* ih;
+		ih = (ip_header*)(packet_data + sizeof(ethernet_header));
+
+		if (ih->next_protocol == 17) // UDP
+		{
+			if (memcmp(ipv4_addr_dst, ih->src_addr, 4 * sizeof(char)) == 0 && memcmp(ipv4_addr_dst, ih->dst_addr, 4 * sizeof(char)) == 0) {
+				memcpy(&temp, packet_data + sizeof(ethernet_header) + sizeof(ip_header) + sizeof(udp_header), sizeof(struct Datagram));
+				if(strcmp(temp.message , "ACK") == 0) {
+					ack = true;
+				}
+			}
+		}
+	}
+	pthread_mutex_unlock(&mutex);
 }
